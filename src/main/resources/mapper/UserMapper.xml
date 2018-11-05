@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qdu.lc.blogs.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="qdu.lc.blogs.model.User">
+    <id column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="superuser" jdbcType="BIT" property="superuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    telephone, account, password, createtime, superuser
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from blog_user
+    where telephone = #{telephone,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from blog_user
+    where telephone = #{telephone,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="qdu.lc.blogs.model.User">
+    insert into blog_user (telephone, account, password, 
+      createtime, superuser)
+    values (#{telephone,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{superuser,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="qdu.lc.blogs.model.User">
+    insert into blog_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="superuser != null">
+        superuser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="superuser != null">
+        #{superuser,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="qdu.lc.blogs.model.User">
+    update blog_user
+    <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="superuser != null">
+        superuser = #{superuser,jdbcType=BIT},
+      </if>
+    </set>
+    where telephone = #{telephone,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="qdu.lc.blogs.model.User">
+    update blog_user
+    set account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      superuser = #{superuser,jdbcType=BIT}
+    where telephone = #{telephone,jdbcType=VARCHAR}
+  </update>
+</mapper>
