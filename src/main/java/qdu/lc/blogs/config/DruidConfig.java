@@ -1,4 +1,4 @@
-package qdu.lc.blogs.Config;
+package qdu.lc.blogs.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
