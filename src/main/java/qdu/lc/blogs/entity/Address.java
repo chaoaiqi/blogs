@@ -1,4 +1,4 @@
-package qdu.lc.blogs.model;
+package qdu.lc.blogs.entity;
 
 public class Address {
 	private String ip;

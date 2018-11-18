@@ -73,8 +73,8 @@ public class IPAdressUtils {
 		try {
 			url = new URL(urlStr);
 			connection = (HttpURLConnection) url.openConnection();// 新建连接实例
-			connection.setConnectTimeout(2000);// 设置连接超时时间，单位毫秒
-			connection.setReadTimeout(2000);// 设置读取数据超时时间，单位毫秒
+			connection.setConnectTimeout(60000);// 设置连接超时时间，单位毫秒
+			connection.setReadTimeout(60000);// 设置读取数据超时时间，单位毫秒
 			connection.setDoOutput(true);// 是否打开输出流 true|false
 			connection.setDoInput(true);// 是否打开输入流true|false
 			connection.setRequestMethod("GET");// 提交方法POST|GET
@@ -85,7 +85,7 @@ public class IPAdressUtils {
 			out.flush();// 刷新
 			out.close();// 关闭输出流
 			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), encoding));// 往对端写完数据对端服务器返回数据
-			// ,以BufferedReader流来读取
+			//以BufferedReader流来读取
 			StringBuffer buffer = new StringBuffer();
 			String line = "";
 			while ((line = reader.readLine()) != null) {
@@ -94,6 +94,7 @@ public class IPAdressUtils {
 			reader.close();
 			return buffer.toString();
 		} catch (IOException e) {
+			
 			e.printStackTrace();
 		} finally {
 			if (connection != null) {
