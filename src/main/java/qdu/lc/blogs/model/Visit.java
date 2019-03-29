@@ -9,7 +9,14 @@ public class Visit {
 
     private String ip;
 
-    public Integer getId() {
+    
+    public Visit(Date lasttime, String ip) {
+		super();
+		this.lasttime = lasttime;
+		this.ip = ip;
+	}
+
+	public Integer getId() {
         return id;
     }
 

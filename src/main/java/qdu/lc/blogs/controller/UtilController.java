@@ -37,7 +37,11 @@ public class UtilController {
 		if (!"0:0:0:0:0:0:0:1".equals(ip)) {
 			String params = "ip=" + ip;
 			Response response = utilService.getIpAddress(params);
-			return response;
+			if (response.getMeta().isSuccess()) {
+				return response;
+			} else {
+				return null;
+			}
 		}
 		return null;
 	}
